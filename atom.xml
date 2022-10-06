@@ -3,11 +3,11 @@
   <title>陪我去看海吧</title>
   
   <subtitle>SPLITTINGの博客</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://splitting201418.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://splitting201418.github.io/"/>
   <updated>2022-10-06T03:01:23.539Z</updated>
-  <id>http://example.com/</id>
+  <id>https://splitting201418.github.io/</id>
   
   <author>
     <name>SPLITTING</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>博客搭建过程中的错误及解决方式</title>
-    <link href="http://example.com/2022/10/06/bo-ke-da-jian-guo-cheng-zhong-de-yi-xie-cuo-wu-ji-jie-jue-fang-shi/"/>
-    <id>http://example.com/2022/10/06/bo-ke-da-jian-guo-cheng-zhong-de-yi-xie-cuo-wu-ji-jie-jue-fang-shi/</id>
+    <link href="https://splitting201418.github.io/2022/10/06/bo-ke-da-jian-guo-cheng-zhong-de-yi-xie-cuo-wu-ji-jie-jue-fang-shi/"/>
+    <id>https://splitting201418.github.io/2022/10/06/bo-ke-da-jian-guo-cheng-zhong-de-yi-xie-cuo-wu-ji-jie-jue-fang-shi/</id>
     <published>2022-10-06T02:46:06.494Z</published>
     <updated>2022-10-06T03:01:23.539Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2022/10/04/hello-world/"/>
-    <id>http://example.com/2022/10/04/hello-world/</id>
+    <link href="https://splitting201418.github.io/2022/10/04/hello-world/"/>
+    <id>https://splitting201418.github.io/2022/10/04/hello-world/</id>
     <published>2022-10-04T01:14:31.948Z</published>
     <updated>2022-10-04T01:14:31.948Z</updated>
     
