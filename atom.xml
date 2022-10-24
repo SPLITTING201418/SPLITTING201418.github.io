@@ -6,7 +6,7 @@
   <link href="https://splitting201418.github.io/atom.xml" rel="self"/>
   
   <link href="https://splitting201418.github.io/"/>
-  <updated>2022-10-06T03:01:23.539Z</updated>
+  <updated>2022-10-24T13:48:42.394Z</updated>
   <id>https://splitting201418.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/"/>
+    <id>https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/</id>
+    <published>2022-10-24T13:28:23.514Z</published>
+    <updated>2022-10-24T13:48:42.394Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;关键字—-sizeof&quot;&gt;&lt;a href=&quot;#关键字—-sizeof&quot; class=&quot;headerlink&quot; title=&quot;关键字—-sizeof&quot;&gt;&lt;/a&gt;关键字—-sizeof&lt;/h1&gt;&lt;p&gt;sizeof 是关键字不是函数，其实就算不知道它是否为 32</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://splitting201418.github.io/2022/10/24/linuxgdb-diao-shi-gong-ju/"/>
+    <id>https://splitting201418.github.io/2022/10/24/linuxgdb-diao-shi-gong-ju/</id>
+    <published>2022-10-24T12:16:46.242Z</published>
+    <updated>2022-10-24T13:25:54.557Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;linuxGDB调试工具&quot;&gt;&lt;a href=&quot;#linuxGDB调试工具&quot; class=&quot;headerlink&quot; title=&quot;linuxGDB调试工具&quot;&gt;&lt;/a&gt;linuxGDB调试工具&lt;/h1&gt;&lt;h2 id=&quot;一、GDB简介&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>博客搭建过程中的错误及解决方式</title>
