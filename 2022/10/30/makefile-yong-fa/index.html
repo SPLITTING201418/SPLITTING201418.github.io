@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="最冤枉的关键字, 陪我去看海吧">
-    <meta name="description" content="关键字—-sizeofsizeof 是关键字不是函数，其实就算不知道它是否为 32 个关键字之一时，我们也可以借助编译器确定它的身份。看下面的例子思考：
-int i=0；
-A),sizeof(int)； B)，sizeof(i)； C)，s">
+    <meta name="keywords" content="Makefile语法, 陪我去看海吧">
+    <meta name="description" content="Makefile基本语法make 是一个解释 makefile 中指令的命令工具。
+make 工具最主要也是最基本的功能：就是通过 makefile文件 来描述源程序之间的相互关系并自动维护编译工作。而 makefile文件 需要按照某种语">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>最冤枉的关键字 | 陪我去看海吧</title>
+    <title>Makefile语法 | 陪我去看海吧</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -337,12 +336,12 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">最冤枉的关键字</h1>
+                    <h1 class="description center-align post-title">Makefile语法</h1>
                 </div>
             </div>
         </div>
@@ -378,14 +377,14 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-10-24
+                    2022-10-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-10-24
+                    2022-10-30
                 </div>
                 
 
@@ -407,33 +406,90 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关键字—-sizeof"><a href="#关键字—-sizeof" class="headerlink" title="关键字—-sizeof"></a>关键字—-sizeof</h1><p>sizeof 是关键字不是函数，其实就算不知道它是否为 32 个关键字之一时，我们也可以<br>借助编译器确定它的身份。看下面的例子思考：</p>
-<p>int i=0；</p>
-<p>A),sizeof(int)； B)，sizeof(i)； C)，sizeof i； D)，sizeof int；</p>
-<p>毫无疑问，32 位系统下 A)，B)的值为 4。至于C)、D)看下面的代码：</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include&lt;stdio.h&gt; 
-int main()
-{
-	int i=0,a;
-	a=sizeof i ;
-	printf("%d",a);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中用了sizeof i 这种看着平常不怎用的用法，但是结果运行发现输出结果为4。说明sizeof i不仅能用并且与sizeof（i）是相同的输出。此时思考，函数名后面没有括号行吗？由此得出 sizeof 绝非函数。</p>
-<p>这个时候再看下段代码：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-	<span class="token keyword">int</span> a<span class="token punctuation">;</span>
-	a<span class="token operator">=</span><span class="token keyword">sizeof</span> <span class="token keyword">int</span> <span class="token punctuation">;</span>
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行发现报错：</p>
+                <h1 id="Makefile基本语法"><a href="#Makefile基本语法" class="headerlink" title="Makefile基本语法"></a>Makefile基本语法</h1><p>make 是一个解释 makefile 中指令的命令工具。</p>
+<p>make 工具最主要也是最基本的功能：就是通过 makefile文件 来描述源程序之间的相互关系并自动维护编译工作。而 makefile文件 需要按照某种语法进行编写，文件中需要说明如何编译各个源文件，并连接生成可执行文件，并要求定义源文件之间的依赖关系。</p>
 <blockquote>
-<p>5	11	C:\Users\DELL\Desktop\学习\C\1.cpp	[Error] expected primary-expression before ‘int’</p>
+<p>-f 指定使用的Makefile 文件</p>
 </blockquote>
-<p>编译器怎么怎么提示出错呢？不是说 sizeof 是个关键字，其后面的括号<br>可以没有么？那你想想 sizeof int 表示什么啊？int 前面加一个关键字？类型扩展？明显不正确，我们可以在 int 前加 unsigned，const 等关键字但不能加 sizeof。<br>由此可以得出结论：</p>
-<p><em><strong>sizeof 在计算变量所占空间大小时，括号可以省略，而计算类型(模子)大小时不能省略</strong></em></p>
-<p>参考文献：《C 语言深度解剖》-陈正冲 编著</p>
+<blockquote>
+<p>-j 指定几个线程编译</p>
+</blockquote>
+<h2 id="一-Makefile的底层规则"><a href="#一-Makefile的底层规则" class="headerlink" title="一.Makefile的底层规则"></a>一.Makefile的底层规则</h2><pre><code>targets：prerequisites
+    command
+    command
+    ......
+
+目标：依赖
+    命令
+    命令
+    ......
+</code></pre>
+<p>由此可见Makefile 的三要素就是 目标 依赖 以及 命令</p>
+<ul>
+<li>1.target 也就是一个目标文件，需要由make工具创建的目标体（target）。可以是Object File，也可以是执行文件。还可以是一个标签（Label），对于标签这种特性，在后续的“伪目标”章节中会有叙述。</li>
+<li>2.prerequisites 就是要生成那个target所需要的文件或是目标。即要创建的目标体所依赖的文件（dependency_file）。</li>
+<li>3.command 也就是make需要执行的命令（任意的Shell命令）。即创建每个目标体时需要运行的命令（command）。</li>
+</ul>
+<p><em><strong>注意：Makefile中的命令 写在一行和写在两行是有区别的，可以理解为 每一行都是用一个sh环境执行的，执行完成后该shell环境立即关闭</strong></em></p>
+<h2 id="二-Makefile-变量的引入以及使用"><a href="#二-Makefile-变量的引入以及使用" class="headerlink" title="二.Makefile 变量的引入以及使用"></a>二.Makefile 变量的引入以及使用</h2><pre><code>CC=gcc -Wall
+obj/st_work.o : sources/st_work.c
+    \$(CC) \$(HEAD) \$(SRC) \$(OBJ)
+</code></pre>
+<ul>
+<li><p>1.实际上变量只能存储字符串。</p>
+<p>  定义：变量名 = “字符串”</p>
+<p>  使用：$(变量名)</p>
+<p>  赋值方式：</p>
+<pre><code>  直接对变量本身进行操作
+       =    递归展开赋值，当对一个变量进行操作时，如果这个变量后后面有变化，这个变量不会马上赋值，会一直找到最后一次变量，再进行赋值。
+      :=    就地展开赋值，当对一个变量进行操作，直接使用这个变量当前的值，而不受后面任何变量。
+      
+      在变量的基础上加上东西
+      +=    对某个变量的值，进行追加
+      ?=    如果变量没有初始化，则对其初始化
+</code></pre>
+</li>
+<li><p>2.变量可以嵌套<br>$($(x))</p>
+</li>
+<li><p>3.自动变量<br>所有自动变量，自己本身存在的特定的作用。</p>
+<pre><code>  $*    不包含拓展名的目标文件名称。
+  $+    所有的依赖文件名称，但是可能出现同名的。
+  $^    所有的依赖文件名称，但是不会出现同名的。
+  $&lt;  第一个依赖文件的名称。
+  $@    目标文件的完整名称
+  $?    所有已经更新的依赖文件的名字。（比目标文件要新的依赖文件）
+</code></pre>
+</li>
+</ul>
+<h2 id="三-函数使用"><a href="#三-函数使用" class="headerlink" title="三.函数使用"></a>三.函数使用</h2><p>函数调用后，函数的返回值可以当做变量来使用。</p>
+<p>调用格式如下所示：  $((function) (arguments);)</p>
+<pre><code>$（函数名 函数参数列表）
+        wildcard:文件名展开函数。将所有用户想要找到的文件名给得到（用户想要得到的文件名可以通过通配符）。
+        用法：$(wildcard 可变参数列表） 
+                返回值：已经找到的文件名列表，每个文件名都加上空格。
+        $(wildcard *.c)
+</code></pre>
+<h2 id="四-伪指令"><a href="#四-伪指令" class="headerlink" title="四.伪指令"></a>四.伪指令</h2><p>all  跟  make+目标文件</p>
+<p>all表示最终目标，后来的依赖文件就可以写可执行文件，不需要写指令。</p>
+<p>如果在all后面的依赖文件没有出现clean，但是你写了clean。那么makefile是不会自动执行clean，只有当单独输入make clean时，才会独立执行clean执行指令。</p>
+<p>在许多Makefile中都可以看到.PHONY:xxx之类的语句，其含义就是定义xxx为伪目标，当一个目标被声明为伪目标后，make在执行规则时不会去试图去查找隐含规则来创建它。</p>
+<p>可近似的理解为编译可选项：等用户想操作的时候才执行，用户不操作，不会自动执行。</p>
+<h2 id="五-语法规则"><a href="#五-语法规则" class="headerlink" title="五.语法规则"></a>五.语法规则</h2><p>条件表达式的语法为：</p>
+<pre><code>(conditional-directive);
+(text-if-true);
+endif
+</code></pre>
+<p>以及：</p>
+<pre><code>(conditional-directive);
+(text-if-true);
+else
+(text-if-false);
+endif
+</code></pre>
+<p>其中(conditional-directive);表示条件关键字 ifeq ifneq ifdef ifndef<br>ifeq ((arg1),(arg2))</p>
+<h2 id="六-Makefile调用shell命令"><a href="#六-Makefile调用shell命令" class="headerlink" title="六.Makefile调用shell命令"></a>六.Makefile调用shell命令</h2><p>Makefile脚本中，是可以直接调用shell命令的，并且在执行make时，能看到执行的shell语句。</p>
+<p>在shell命令前添加：‘@’ 符号, 则可以不显示命令本身而只显示结果。</p>
+<p>在shell命令前添加: ‘-‘  符号，则运行该条shell命令失败时，不会中断Makefile脚本的后续执行。</p>
 
                 
             </div>
@@ -460,7 +516,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/">https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/</a>
+                    <a href="https://splitting201418.github.io/2022/10/30/makefile-yong-fa/">https://splitting201418.github.io/2022/10/30/makefile-yong-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,54 +597,18 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/10/29/printk-nei-he-da-yin/">
+                <a href="/2022/10/30/makefile-yong-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="内核打印printk">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Makefile语法">
                         
-                        <span class="card-title">内核打印printk</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-29
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            SPLITTING
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/10/24/linuxgdb-diao-shi-gong-ju/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="LinuxGDB调试工具">
-                        
-                        <span class="card-title">LinuxGDB调试工具</span>
+                        <span class="card-title">Makefile语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -599,7 +619,45 @@ int main()
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            SPLITTING
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="内核编译obj-m和obj-y">
+                        
+                        <span class="card-title">内核编译obj-m和obj-y</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
                             </span>
                         <span class="publish-author">
                             

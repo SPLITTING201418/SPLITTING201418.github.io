@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Makefile语法</title>
+      <link href="/2022/10/30/makefile-yong-fa/"/>
+      <url>/2022/10/30/makefile-yong-fa/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Makefile基本语法"><a href="#Makefile基本语法" class="headerlink" title="Makefile基本语法"></a>Makefile基本语法</h1><p>make 是一个解释 makefile 中指令的命令工具。</p><p>make 工具最主要也是最基本的功能：就是通过 makefile文件 来描述源程序之间的相互关系并自动维护编译工作。而 makefile文件 需要按照某种语法进行编写，文件中需要说明如何编译各个源文件，并连接生成可执行文件，并要求定义源文件之间的依赖关系。</p><blockquote><p>-f 指定使用的Makefile 文件</p></blockquote><blockquote><p>-j 指定几个线程编译</p></blockquote><h2 id="一-Makefile的底层规则"><a href="#一-Makefile的底层规则" class="headerlink" title="一.Makefile的底层规则"></a>一.Makefile的底层规则</h2><pre><code>targets：prerequisites    command    command    ......目标：依赖    命令    命令    ......</code></pre><p>由此可见Makefile 的三要素就是 目标 依赖 以及 命令</p><ul><li>1.target 也就是一个目标文件，需要由make工具创建的目标体（target）。可以是Object File，也可以是执行文件。还可以是一个标签（Label），对于标签这种特性，在后续的“伪目标”章节中会有叙述。</li><li>2.prerequisites 就是要生成那个target所需要的文件或是目标。即要创建的目标体所依赖的文件（dependency_file）。</li><li>3.command 也就是make需要执行的命令（任意的Shell命令）。即创建每个目标体时需要运行的命令（command）。</li></ul><p><em><strong>注意：Makefile中的命令 写在一行和写在两行是有区别的，可以理解为 每一行都是用一个sh环境执行的，执行完成后该shell环境立即关闭</strong></em></p><h2 id="二-Makefile-变量的引入以及使用"><a href="#二-Makefile-变量的引入以及使用" class="headerlink" title="二.Makefile 变量的引入以及使用"></a>二.Makefile 变量的引入以及使用</h2><pre><code>CC=gcc -Wallobj/st_work.o : sources/st_work.c    \$(CC) \$(HEAD) \$(SRC) \$(OBJ)</code></pre><ul><li><p>1.实际上变量只能存储字符串。</p><p>  定义：变量名 = “字符串”</p><p>  使用：$(变量名)</p><p>  赋值方式：</p><pre><code>  直接对变量本身进行操作       =    递归展开赋值，当对一个变量进行操作时，如果这个变量后后面有变化，这个变量不会马上赋值，会一直找到最后一次变量，再进行赋值。      :=    就地展开赋值，当对一个变量进行操作，直接使用这个变量当前的值，而不受后面任何变量。            在变量的基础上加上东西      +=    对某个变量的值，进行追加      ?=    如果变量没有初始化，则对其初始化</code></pre></li><li><p>2.变量可以嵌套<br>$($(x))</p></li><li><p>3.自动变量<br>所有自动变量，自己本身存在的特定的作用。</p><pre><code>  $*    不包含拓展名的目标文件名称。  $+    所有的依赖文件名称，但是可能出现同名的。  $^    所有的依赖文件名称，但是不会出现同名的。  $&lt;  第一个依赖文件的名称。  $@    目标文件的完整名称  $?    所有已经更新的依赖文件的名字。（比目标文件要新的依赖文件）</code></pre></li></ul><h2 id="三-函数使用"><a href="#三-函数使用" class="headerlink" title="三.函数使用"></a>三.函数使用</h2><p>函数调用后，函数的返回值可以当做变量来使用。</p><p>调用格式如下所示：  $((function) (arguments);)</p><pre><code>$（函数名 函数参数列表）        wildcard:文件名展开函数。将所有用户想要找到的文件名给得到（用户想要得到的文件名可以通过通配符）。        用法：$(wildcard 可变参数列表）                 返回值：已经找到的文件名列表，每个文件名都加上空格。        $(wildcard *.c)</code></pre><h2 id="四-伪指令"><a href="#四-伪指令" class="headerlink" title="四.伪指令"></a>四.伪指令</h2><p>all  跟  make+目标文件</p><p>all表示最终目标，后来的依赖文件就可以写可执行文件，不需要写指令。</p><p>如果在all后面的依赖文件没有出现clean，但是你写了clean。那么makefile是不会自动执行clean，只有当单独输入make clean时，才会独立执行clean执行指令。</p><p>在许多Makefile中都可以看到.PHONY:xxx之类的语句，其含义就是定义xxx为伪目标，当一个目标被声明为伪目标后，make在执行规则时不会去试图去查找隐含规则来创建它。</p><p>可近似的理解为编译可选项：等用户想操作的时候才执行，用户不操作，不会自动执行。</p><h2 id="五-语法规则"><a href="#五-语法规则" class="headerlink" title="五.语法规则"></a>五.语法规则</h2><p>条件表达式的语法为：</p><pre><code>(conditional-directive);(text-if-true);endif</code></pre><p>以及：</p><pre><code>(conditional-directive);(text-if-true);else(text-if-false);endif</code></pre><p>其中(conditional-directive);表示条件关键字 ifeq ifneq ifdef ifndef<br>ifeq ((arg1),(arg2))</p><h2 id="六-Makefile调用shell命令"><a href="#六-Makefile调用shell命令" class="headerlink" title="六.Makefile调用shell命令"></a>六.Makefile调用shell命令</h2><p>Makefile脚本中，是可以直接调用shell命令的，并且在执行make时，能看到执行的shell语句。</p><p>在shell命令前添加：‘@’ 符号, 则可以不显示命令本身而只显示结果。</p><p>在shell命令前添加: ‘-‘  符号，则运行该条shell命令失败时，不会中断Makefile脚本的后续执行。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内核编译obj-m和obj-y</title>
+      <link href="/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/"/>
+      <url>/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/</url>
+      
+        <content type="html"><![CDATA[<h1 id="内核编译obj-m和obj-y"><a href="#内核编译obj-m和obj-y" class="headerlink" title="内核编译obj-m和obj-y"></a>内核编译obj-m和obj-y</h1><p>在内核编译时，主要涉及一下文件：</p><blockquote><p>kernel/arch/arm/configs/*.defconfig </p></blockquote><blockquote><p>kernel/driver/*/Makefile</p></blockquote><blockquote><p>kernel/driver/*/Kconfig</p></blockquote><p>在进行模块编译时，主要有两个选项，obj-m和obj-y，而与内核密切相关的是obj-y选项，下面简单总结一下两者之间的区别:</p><pre><code>obj-m  += test.oobj-y  += test.o</code></pre><p>其中:</p><p>obj-m表示把文件test.o作为”模块”进行编译，不会编译到内核，但是会生成一个独立的 “test.ko” 文件；</p><p>obj-y表示把test.o文件编译进内核;</p><p>编译进内核的某个程序，若想以模块的方式进行执行，查阅****.ko-Makefile.</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Can&#39;t use &#39;defined(@array)&#39; (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373.</title>
+      <link href="/2022/10/30/can-t-use-defined-array/"/>
+      <url>/2022/10/30/can-t-use-defined-array/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Can’t-use-‘defined-array-’-Maybe-you-should-just-omit-the-defined-at-kerneltimeconst-pl-line-373"><a href="#Can’t-use-‘defined-array-’-Maybe-you-should-just-omit-the-defined-at-kerneltimeconst-pl-line-373" class="headerlink" title="Can’t use ‘defined(@array)’ (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373."></a>Can’t use ‘defined(@array)’ (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373.</h1><p>在对linux中Uboot和内核编译，运行编译指令：make zImage 生成内核镜像文件时，发生编译内核报错：</p><pre><code>    CHK     include/linux/version.h    CHK     include/generated/utsrelease.hmake[1]: 'include/generated/mach-types.h' is up to date.    CALL    scripts/checksyscalls.sh    CHK     include/generated/compile.h    TIMEC   kernel/timeconst.hCan't use 'defined(@array)' (Maybe you should just omit the defined()?) at kernel/timeconst.pl line 373./home/liuxueneng/workCode/rk3066/kernel/kernel/Makefile:141: recipe for target 'kernel/timeconst.h' failedmake[1]: *** [kernel/timeconst.h] Error 255Makefile:973: recipe for target 'kernel' failedmake: *** [kernel] Error 2</code></pre><p>错误信息：</p><blockquote><p>Can’t use ‘defined(@array)’ (Maybe you should just omit the defined()?) at kernel/timeconst.pl line 373</p></blockquote><p>已经提示详细的错误信息在哪里了，并且给出了可能的解决方案，打开timeconst.ps看一下：</p><pre><code>372        @val = @{$canned_values{$hz}};                                        373         if (!defined(@val)) {                                                          374                 @val = compute_values($hz);                                   375         }                                                                     376         output($hz, @val);</code></pre><p>根据提示去掉373行的defined，如下：</p><pre><code>372        @val = @{$canned_values{$hz}};                                        373         if (!(@val)) {                                                          374                 @val = compute_values($hz);                                   375         }                                                                     376         output($hz, @val);</code></pre><p>查阅了一下更新，发现其中有一项是perl版本升级到了 v5.22.1，然后查了perl官方文档，发现官网因为一个bug，该版本将defined(@array)去掉了。可以直接使用数组判断非空。</p><p>参考<a href="https://www.cnblogs.com/tid-think/p/10929435.html%E3%80%82">https://www.cnblogs.com/tid-think/p/10929435.html。</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内核打印printk</title>
+      <link href="/2022/10/29/printk-nei-he-da-yin/"/>
+      <url>/2022/10/29/printk-nei-he-da-yin/</url>
+      
+        <content type="html"><![CDATA[<h1 id="内核打印printk"><a href="#内核打印printk" class="headerlink" title="内核打印printk"></a>内核打印printk</h1><p> 学习linux驱动中的过程中使用到了printk函数，并涉及到了KERN_EMERG参数的使用。记录下printk内核打印。</p><h2 id="一-printk简介"><a href="#一-printk简介" class="headerlink" title="一.printk简介"></a>一.printk简介</h2><p> printk 在内核源码中用来记录日志信息的函数，只能在内核源码范围内使用，用法类似于 printf 函数。</p><p> printk 函数主要做两件事情： </p><ul><li>将信息记录到 log 中；</li><li>调用控制台驱动来将信息输出</li></ul><p>printk 将内核信息输出到内核信息缓冲区中，内核缓冲区在 kernel/printk/printk.c 中定义：</p><blockquote><p>static char __log_buf[__LOG_BUF_LEN] __aligned(LOG_ALIGN);</p></blockquote><p>内核信息缓冲区是一个环形缓冲区（Ring Buffer），因此，如果塞入的消息过多，则就会将之前的消息冲刷掉。</p><h2 id="二-消息级别"><a href="#二-消息级别" class="headerlink" title="二.消息级别"></a>二.消息级别</h2><p>Linux 内核共提供了八种不同的消息级别，分为级别 0~7。数值越大，表示级别越低，对应的消息越不重要。相应的宏定义在 include/linux/kern_levels.h 文件中。</p><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define KERN_SOH   "\001"      /* ASCII Start Of Header */#define KERN_SOH_ASCII '\001'#define KERN_EMERG      KERN_SOH "0"   /* system is unusable */#define KERN_ALERT      KERN_SOH "1"   /* action must be taken immediately */#define KERN_CRIT       KERN_SOH "2"   /* critical conditions */#define KERN_ERR        KERN_SOH "3"   /* error conditions */#define KERN_WARNING    KERN_SOH "4"   /* warning conditions */#define KERN_NOTICE     KERN_SOH "5"   /* normal but significant condition */#define KERN_INFO       KERN_SOH "6"   /* informational */#define KERN_DEBUG      KERN_SOH "7"   /* debug-level messages */<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>说明：</p><ul><li>KERN_EMERG 表示紧急事件，一般是系统崩溃之前提示的消息；</li><li>KERN_ALERT 表示必须立即采取行动的消息；</li><li>KERN_CRIT 表示临界状态，通常涉及严重的硬件或软件操作失败；</li><li>KERN_ERR 用于报告错误状态，设备驱动程序会经常使用该级别来报告来自硬件的问题；</li><li>KERN_WARNING 对可能出现问题的情况进行警告，这类情况通常不会对系统造成严重的问题；</li><li>KERN_NOTICE 表示有必要进行提示的正常情形，许多与安全相关的状况用这个级别进行汇报；</li><li>KERN_INFO 表示内核提示信息，很多驱动程序在启动的时候，用这个级别打印出它们找到的硬件信息；</li><li>KERN_DEBUG 用于调试信息。</li></ul><h2 id="三-内核-printk-文件"><a href="#三-内核-printk-文件" class="headerlink" title="三.内核 printk 文件"></a>三.内核 printk 文件</h2><p>通过 /proc/sys/kernel/printk 文件可以调节 printk 的输出等级，该文件有 4 个数字值。例如，在 Ubuntu 上的值如下：</p><pre><code>&amp; cat /proc/sys/kernel/printk        4    4    1    7</code></pre><p>其中第一个“4”表示内核打印函数printk的打印级别，只有级别比他高的信息才能在控制台上打印出来，既 0－3级别的信息。</p><p>分别对应控制台日志级别、默认的消息日志级别、最低的控制台日志级别和默认的控制台日志级别。四个数值的含义如下：</p><ul><li>1.控制台日志级别：优先级高于该值的消息将被打印至控制台；</li><li>2.默认的消息日志级别：将用该优先级来打印没有优先级的消息；</li><li>3.最低的控制台日志级别：控制台日志级别可被设置的最小值（最高优先级）；</li><li>4.默认的控制台日志级别：控制台日志级别的缺省值。</li></ul><p>这四个值在 kernel/printk/printk.c 中被定义，如下：</p><pre class="line-numbers language-C" data-language="C"><code class="language-C">int console_printk[4] = {        CONSOLE_LOGLEVEL_DEFAULT,       /* console_loglevel */        MESSAGE_LOGLEVEL_DEFAULT,       /* default_message_loglevel */        CONSOLE_LOGLEVEL_MIN,           /* minimum_console_loglevel */        CONSOLE_LOGLEVEL_DEFAULT,       /* default_console_loglevel */};EXPORT_SYMBOL_GPL(console_printk);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="四-调整打印级别"><a href="#四-调整打印级别" class="headerlink" title="四.调整打印级别"></a>四.调整打印级别</h2><h3 id="①-在-menuconfig-中修改"><a href="#①-在-menuconfig-中修改" class="headerlink" title="①.在 menuconfig 中修改"></a>①.在 menuconfig 中修改</h3><p>修改 CONFIG_MESSAGE_LOGLEVEL_DEFAULT 的值，然后重新编译，更新内核。menuconfig 配置路径如下：</p><pre><code>Kernel hacking  ---&gt;printk and dmesg options  ---&gt;    (4) Default message log level (1-7)</code></pre><h3 id="②在系统中修改"><a href="#②在系统中修改" class="headerlink" title="②在系统中修改"></a>②在系统中修改</h3><p>在系统运行期间，可以通过修改 /proc/sys/kernel/printk 中的值来改变内核打印效果。例如，屏蔽掉所有的内核 printk 打印，只需要把第一个数值调到最小值1或者0。</p><pre><code>echo 1       4       1      7 &gt; /proc/sys/kernel/printk</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最冤枉的关键字</title>
       <link href="/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/"/>
       <url>/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/</url>

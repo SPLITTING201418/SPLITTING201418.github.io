@@ -4,10 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="最冤枉的关键字, 陪我去看海吧">
-    <meta name="description" content="关键字—-sizeofsizeof 是关键字不是函数，其实就算不知道它是否为 32 个关键字之一时，我们也可以借助编译器确定它的身份。看下面的例子思考：
-int i=0；
-A),sizeof(int)； B)，sizeof(i)； C)，s">
+    <meta name="keywords" content="内核编译obj-m和obj-y, 陪我去看海吧">
+    <meta name="description" content="内核编译obj-m和obj-y在内核编译时，主要涉及一下文件：
+
+kernel/arch/arm/configs/*.defconfig 
+
+
+kernel/driver/*/Makefile
+
+
+kernel/driver/*/Kconf">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +25,7 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>最冤枉的关键字 | 陪我去看海吧</title>
+    <title>内核编译obj-m和obj-y | 陪我去看海吧</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -337,12 +343,12 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">最冤枉的关键字</h1>
+                    <h1 class="description center-align post-title">内核编译obj-m和obj-y</h1>
                 </div>
             </div>
         </div>
@@ -378,14 +384,14 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-10-24
+                    2022-10-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-10-24
+                    2022-10-30
                 </div>
                 
 
@@ -407,33 +413,24 @@ A),sizeof(int)； B)，sizeof(i)； C)，s">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关键字—-sizeof"><a href="#关键字—-sizeof" class="headerlink" title="关键字—-sizeof"></a>关键字—-sizeof</h1><p>sizeof 是关键字不是函数，其实就算不知道它是否为 32 个关键字之一时，我们也可以<br>借助编译器确定它的身份。看下面的例子思考：</p>
-<p>int i=0；</p>
-<p>A),sizeof(int)； B)，sizeof(i)； C)，sizeof i； D)，sizeof int；</p>
-<p>毫无疑问，32 位系统下 A)，B)的值为 4。至于C)、D)看下面的代码：</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include&lt;stdio.h&gt; 
-int main()
-{
-	int i=0,a;
-	a=sizeof i ;
-	printf("%d",a);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中用了sizeof i 这种看着平常不怎用的用法，但是结果运行发现输出结果为4。说明sizeof i不仅能用并且与sizeof（i）是相同的输出。此时思考，函数名后面没有括号行吗？由此得出 sizeof 绝非函数。</p>
-<p>这个时候再看下段代码：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h&gt;</span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-	<span class="token keyword">int</span> a<span class="token punctuation">;</span>
-	a<span class="token operator">=</span><span class="token keyword">sizeof</span> <span class="token keyword">int</span> <span class="token punctuation">;</span>
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行发现报错：</p>
+                <h1 id="内核编译obj-m和obj-y"><a href="#内核编译obj-m和obj-y" class="headerlink" title="内核编译obj-m和obj-y"></a>内核编译obj-m和obj-y</h1><p>在内核编译时，主要涉及一下文件：</p>
 <blockquote>
-<p>5	11	C:\Users\DELL\Desktop\学习\C\1.cpp	[Error] expected primary-expression before ‘int’</p>
+<p>kernel/arch/arm/configs/*.defconfig </p>
 </blockquote>
-<p>编译器怎么怎么提示出错呢？不是说 sizeof 是个关键字，其后面的括号<br>可以没有么？那你想想 sizeof int 表示什么啊？int 前面加一个关键字？类型扩展？明显不正确，我们可以在 int 前加 unsigned，const 等关键字但不能加 sizeof。<br>由此可以得出结论：</p>
-<p><em><strong>sizeof 在计算变量所占空间大小时，括号可以省略，而计算类型(模子)大小时不能省略</strong></em></p>
-<p>参考文献：《C 语言深度解剖》-陈正冲 编著</p>
+<blockquote>
+<p>kernel/driver/*/Makefile</p>
+</blockquote>
+<blockquote>
+<p>kernel/driver/*/Kconfig</p>
+</blockquote>
+<p>在进行模块编译时，主要有两个选项，obj-m和obj-y，而与内核密切相关的是obj-y选项，下面简单总结一下两者之间的区别:</p>
+<pre><code>obj-m  += test.o
+obj-y  += test.o
+</code></pre>
+<p>其中:</p>
+<p>obj-m表示把文件test.o作为”模块”进行编译，不会编译到内核，但是会生成一个独立的 “test.ko” 文件；</p>
+<p>obj-y表示把test.o文件编译进内核;</p>
+<p>编译进内核的某个程序，若想以模块的方式进行执行，查阅****.ko-Makefile.</p>
 
                 
             </div>
@@ -460,7 +457,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/">https://splitting201418.github.io/2022/10/24/zui-yuan-wang-de-guan-jian-zi-sizeof/</a>
+                    <a href="https://splitting201418.github.io/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/">https://splitting201418.github.io/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -545,13 +542,13 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/10/29/printk-nei-he-da-yin/">
+                <a href="/2022/10/30/makefile-yong-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="内核打印printk">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Makefile语法">
                         
-                        <span class="card-title">内核打印printk</span>
+                        <span class="card-title">Makefile语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -562,7 +559,7 @@ int main()
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-29
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
                         </span>
                         <span class="publish-author">
                             
@@ -582,13 +579,13 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/10/24/linuxgdb-diao-shi-gong-ju/">
+                <a href="/2022/10/30/can-t-use-defined-array/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="LinuxGDB调试工具">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Can&#39;t use &#39;defined(@array)&#39; (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373.">
                         
-                        <span class="card-title">LinuxGDB调试工具</span>
+                        <span class="card-title">Can&#39;t use &#39;defined(@array)&#39; (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373.</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -599,7 +596,7 @@ int main()
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
                             </span>
                         <span class="publish-author">
                             

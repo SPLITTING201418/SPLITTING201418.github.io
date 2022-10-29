@@ -6,7 +6,7 @@
   <link href="https://splitting201418.github.io/atom.xml" rel="self"/>
   
   <link href="https://splitting201418.github.io/"/>
-  <updated>2022-10-24T14:04:55.168Z</updated>
+  <updated>2022-10-29T17:34:06.338Z</updated>
   <id>https://splitting201418.github.io/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Makefile语法</title>
+    <link href="https://splitting201418.github.io/2022/10/30/makefile-yong-fa/"/>
+    <id>https://splitting201418.github.io/2022/10/30/makefile-yong-fa/</id>
+    <published>2022-10-29T17:08:46.438Z</published>
+    <updated>2022-10-29T17:34:06.338Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Makefile基本语法&quot;&gt;&lt;a href=&quot;#Makefile基本语法&quot; class=&quot;headerlink&quot; title=&quot;Makefile基本语法&quot;&gt;&lt;/a&gt;Makefile基本语法&lt;/h1&gt;&lt;p&gt;make 是一个解释 makefile</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>内核编译obj-m和obj-y</title>
+    <link href="https://splitting201418.github.io/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/"/>
+    <id>https://splitting201418.github.io/2022/10/30/nei-he-bian-yi-obj-m-he-obj-y/</id>
+    <published>2022-10-29T16:53:16.030Z</published>
+    <updated>2022-10-29T17:00:40.251Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;内核编译obj-m和obj-y&quot;&gt;&lt;a href=&quot;#内核编译obj-m和obj-y&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Can&#39;t use &#39;defined(@array)&#39; (Maybe you should just omit the defined()) at kerneltimeconst.pl line 373.</title>
+    <link href="https://splitting201418.github.io/2022/10/30/can-t-use-defined-array/"/>
+    <id>https://splitting201418.github.io/2022/10/30/can-t-use-defined-array/</id>
+    <published>2022-10-29T16:37:49.500Z</published>
+    <updated>2022-10-29T16:52:02.364Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Can’t-use-‘defined-array-’-Maybe-you-should-just-omit-the-defined-at-kerneltimeconst-pl-line-373&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>内核打印printk</title>
+    <link href="https://splitting201418.github.io/2022/10/29/printk-nei-he-da-yin/"/>
+    <id>https://splitting201418.github.io/2022/10/29/printk-nei-he-da-yin/</id>
+    <published>2022-10-29T15:10:24.350Z</published>
+    <updated>2022-10-29T16:36:43.792Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;内核打印printk&quot;&gt;&lt;a href=&quot;#内核打印printk&quot; class=&quot;headerlink&quot; title=&quot;内核打印printk&quot;&gt;&lt;/a&gt;内核打印printk&lt;/h1&gt;&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>最冤枉的关键字</title>
