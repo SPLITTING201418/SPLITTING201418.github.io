@@ -6,7 +6,7 @@
   <link href="https://splitting201418.github.io/atom.xml" rel="self"/>
   
   <link href="https://splitting201418.github.io/"/>
-  <updated>2022-10-29T17:34:06.338Z</updated>
+  <updated>2022-11-02T09:38:14.203Z</updated>
   <id>https://splitting201418.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈python浅拷贝和深拷贝</title>
+    <link href="https://splitting201418.github.io/2022/11/02/python-qian-kao-bei-he-shen-kao-bei/"/>
+    <id>https://splitting201418.github.io/2022/11/02/python-qian-kao-bei-he-shen-kao-bei/</id>
+    <published>2022-11-02T08:54:33.165Z</published>
+    <updated>2022-11-02T09:38:14.203Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;浅谈python浅拷贝和深拷贝&quot;&gt;&lt;a href=&quot;#浅谈python浅拷贝和深拷贝&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Makefile语法</title>
